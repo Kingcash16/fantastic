@@ -1,0 +1,48 @@
+<!-- 
+    Joshua Jaja - 
+    CIS 3368 -  
+    HW3 - EJS, API and Forms -
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <%- include('../partials/head'); %> <!-- get head --> 
+ </head>
+ <body class="container">
+ 
+     <header>
+         <%- include('../partials/header'); %> <!-- get header -->
+     </header>
+ 
+     <main>
+         <div class="jumbotron">
+             <h1>Aliases</h1> <!-- header -->
+             <p>Enter a superhero to return all aliases.</p> <!-- explaination on page -->
+ 
+             <!-- form to get superhero name from user, pass through as "superhero" -->
+             <form action="/processdynamicform" method="post"> <!-- pass form data to /processdynamicform -->
+                 Enter Super Hero: <input type="text" name=superhero> <!-- text input from user -->
+             </form>
+             <br> <!-- spacing -->
+             <br> <!-- spacing -->
+             <u><h3><%= locals.hero_tagline %></h3></u> <!-- if there is a tagline then display it -->
+             <ul> <!-- unordered list -->
+                 <% if (locals.hero_info) { %> <!-- if info is passed in -->
+                     <% locals.hero_info.forEach(function(hero) { %>
+                         <li> <!-- new list item for every name in hero_info -->
+                             <strong> 
+                                 <%= hero.name %> <!-- gets hero name from dictinoary-->
+                                 <img src=<%= hero.img %> height="250"> <!-- gets hero image from dictinoary-->
+                             </strong>
+                         </li>
+                     <% }); %>
+                 <% } %>
+             </ul>
+         </div>
+     </main>
+ 
+     <footer>
+         <%- include('../partials/footer'); %> <!-- get footer -->
+     </footer>
+ </body>
+ </html>
